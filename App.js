@@ -8,18 +8,9 @@ import NewQuestion from './components/NewQuestion'
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={{flex: 1}}>
       <View style={{height: 80}}/>
-      <NewQuestion />
+      <DeckList />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
