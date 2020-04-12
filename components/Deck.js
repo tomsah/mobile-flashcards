@@ -16,7 +16,7 @@ class Deck extends Component {
   }
 
   componentDidMount() {
-    getDeck('deckTwo')
+    getDeck('deckThree')
     .then( (deck) => {
       console.log('decksList', deck)
       return this.setState(() => ({ deck: deck }))

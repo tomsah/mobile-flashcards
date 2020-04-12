@@ -17,7 +17,11 @@ class DeckList extends Component {
   }
 
   clearAsyncStorage = async() => {
-    await AsyncStorage.clear();
+    await AsyncStorage.clear().then( () =>
+      fetchAllDecks().then(decksList => {
+        return this.setState(() => ({ list: decksList }));
+      })
+    )
   }
 
   onPress = () => {
@@ -26,8 +30,6 @@ class DeckList extends Component {
 
   render() {
     const { list } = this.state;
-    console.log('state', this.state)
-    console.log('list', list, typeof list)
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Deck List View</Text>
