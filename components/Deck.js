@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import MainButton from "./MainButton";
 import { white } from "../../mobile-flashcards/utils/colors";
-import { getDeck, removeDeck } from '../utils/api'
+import { getDeck } from '../utils/api'
 
 class Deck extends Component {
   state = {

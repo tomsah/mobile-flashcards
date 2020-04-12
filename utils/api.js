@@ -18,6 +18,9 @@ export function getDeck(id) {
 }
 
  // saveDeckTitle: take in a single title argument and add it to the decks.
+export function saveDeckTitle(title) {
+  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({[title] : {}}))
+}
 
 
  // addCardToDeck: take in two arguments, title and card, and will add the
