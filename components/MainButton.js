@@ -2,11 +2,13 @@ import React from 'react'
 import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import { purple, white } from '../utils/colors'
 
-export default function MainButton ({children, onPress, style = {}}) {
+export default function MainButton ({children, onPress, style = {}, disabled = false}) {
   return(
     <TouchableOpacity
       style={Platform.OS === 'ios' ? styles.iosGoDeckBtn : styles.AndroidGoDeckBtn }
-      onPress={onPress}>
+      onPress={onPress}
+      disabled={disabled}
+    >
       <Text style={[styles.btnText, style]}>{children}</Text>
     </TouchableOpacity>
   )

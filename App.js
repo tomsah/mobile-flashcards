@@ -4,12 +4,13 @@ import DeckList from './components/DeckList'
 import Quiz from './components/Quiz'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
+import NewQuestion from './components/NewQuestion'
 
 export default function App() {
   return (
     <View style={styles.container}>
       <View style={{height: 80}}/>
-      <NewDeck />
+      <NewQuestion />
     </View>
   );
 }
