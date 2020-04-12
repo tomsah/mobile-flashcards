@@ -10,8 +10,11 @@ export function fetchAllDecks () {
 //   getDeck: take in a single id argument and return the deck associated
 //  with that id.
 export function getDeck(id) {
-  return AsyncStorage.getItem(DECK_STORAGE_KEY, null)
-    .then((decksList) =>  decksList[id])
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+  .then((value => {
+    const data = JSON.parse(value)
+    return {[id]: data[id]}
+  }))
 }
 
  // saveDeckTitle: take in a single title argument and add it to the decks.

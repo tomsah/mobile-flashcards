@@ -3,9 +3,11 @@ export const DECK_STORAGE_KEY = 'mobile-Flashcard:decks'
 
 const decks = {
   deckOne: {
-    question1 : 'answer 1',
-    question2 : 'answer 2',
-    question3 : 'answer 3',
+    question1 :{foo: 'answer 1'},
+    question2 : {foo: 'answer 2'},
+    question3 : {foo: 'answer 3'},
+    question4 : {foo: 'answer 4'},
+    question5 : {foo: 'answer 5'},
   },
   deckTwo: {
     question1 : 'answer 1',
@@ -17,10 +19,6 @@ const decks = {
     question3 : 'answer 3',
     question4 : 'answer 4',
   }
-}
-
-function setMissingData(data) {
-  console.log('new data to store', data)
 }
 
 export async function storeData  () {
