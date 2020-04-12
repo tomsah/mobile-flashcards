@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import DeckList from './components/DeckList'
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <View style={{height: 80}}/>
+      <DeckList/>
     </View>
   );
 }
