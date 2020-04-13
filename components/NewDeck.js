@@ -14,12 +14,12 @@ class NewDeck extends Component {
   })
 
   submitNewDeck = () => {
-    //add new deck to data
     const { title } = this.state
+    const { navigation } = this.props
     saveDeckTitle(title)
       .then(() => {
-        //redirect
-        console.log('redirect to the deck view')
+        navigation.jumpTo('Home')
+        return  navigation.navigate('Deck', {deckId: title})
     })
   }
 
@@ -28,7 +28,6 @@ class NewDeck extends Component {
     return (
       <View style={styles.container}>
         <Text  style={{ fontSize: 18, textAlign: "center", padding: 20 }}>What is the Title of your new Deck ?</Text>
-        <Text>{JSON.stringify(title)}</Text>
         <TextInput
           style={styles.input}
           placeholder="enter your deck title here"
@@ -36,7 +35,9 @@ class NewDeck extends Component {
           defaultValue={title}
         />
 
-        <MainButton  onPress={this.submitNewDeck}>
+        <MainButton
+          disabled={[...title].length === 0}
+          onPress={this.submitNewDeck}>
           Submit
         </MainButton>
       </View>

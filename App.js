@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { View } from 'react-native'
+import { View, Button } from 'react-native'
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -42,7 +42,7 @@ function HomeTabScreen () {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="DeckList" component={DeckList} style={{ fontSize: 20, textAlign: "center" }}/>
+        <Tab.Screen name="Home" component={DeckList} style={{ fontSize: 20, textAlign: "center" }}/>
         <Tab.Screen name="NewDeck" component={NewDeck} style={{ fontSize: 20, textAlign: "center" }}/>
       </Tab.Navigator>
   )
@@ -53,9 +53,17 @@ function HomeTabScreen () {
     <View style={{flex: 1}}>
       <View style={{height: 80}}/>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeTabScreen} />
-          <Stack.Screen name="Deck" component={Deck} />
+        <Stack.Navigator
+
+        >
+          <Stack.Screen
+            name="Home"
+            component={HomeTabScreen}
+          />
+          <Stack.Screen
+            name="Deck"
+            component={Deck}
+          />
           <Stack.Screen name="Quiz" component={Quiz} />
           <Stack.Screen name="NewQuestion" component={NewQuestion} />
         </Stack.Navigator>

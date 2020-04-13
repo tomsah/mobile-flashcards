@@ -20,8 +20,9 @@ class Quiz extends Component {
   };
 
   componentDidMount() {
+    const { deckId } = this.props.route.params;
     // need to get deck Id or pass the deck as prop
-    getDeck("deckThree").then(deck => {
+    getDeck(deckId).then(deck => {
       return this.setState(() => ({ deck: deck }));
     });
   }

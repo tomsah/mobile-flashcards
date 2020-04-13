@@ -20,7 +20,7 @@ class DeckList extends Component {
   componentDidMount() {
     this.props.navigation.addListener("focus", () => {
       fetchAllDecks().then(decksList => {
-        return this.setState(() => ({ list: decksList }));
+        return this.setState(() => ({ list:decksList }));
       });
     });
   }
@@ -40,6 +40,7 @@ class DeckList extends Component {
 
   render() {
     const { list } = this.state;
+    console.log('state', list)
     return (
       <View style={styles.container}>
         <ScrollView>
