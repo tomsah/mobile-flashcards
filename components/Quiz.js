@@ -52,6 +52,7 @@ class Quiz extends Component {
         ...state,
         score: state.score + 1,
         currentQuestion: currentQuestion + 1,
+        showAnswer: false,
         quizEnd: currentQuestion + 1 === cardNumber
       }));
     }
@@ -59,16 +60,8 @@ class Quiz extends Component {
     this.setState(state => ({
       ...state,
       currentQuestion: currentQuestion + 1,
-      quizEnd: currentQuestion + 1 === cardNumber
-    }));
-  };
-
-  nextQuestion = cardNumber => {
-    this.setState(state => ({
-      ...state,
-      currentQuestion: state.currentQuestion + 1,
       showAnswer: false,
-      quizEnd: this.currentQuestion + 1 === cardNumber
+      quizEnd: currentQuestion + 1 === cardNumber
     }));
   };
 
@@ -136,11 +129,6 @@ class Quiz extends Component {
                       >
                         this answer was {questions[question]}
                       </Text>
-                      <MainButton
-                        onPress={() => this.nextQuestion(currentQuestion)}
-                      >
-                        next question
-                      </MainButton>
                     </View>
                   ) : (
                     <View>
@@ -160,21 +148,21 @@ class Quiz extends Component {
                         color={Platform.OS === "ios" ? "blue" : "orange"}
                         onPress={this.showAnswer}
                       />
-
-                      <MainButton
-                        style={{ backgroundColor: "green", marginTop: 20 }}
-                        onPress={() => this.answer("correct", question)}
-                      >
-                        Correct
-                      </MainButton>
-                      <MainButton
-                        style={{ backgroundColor: "red" }}
-                        onPress={() => this.answer("Incorrect", question)}
-                      >
-                        Incorrect
-                      </MainButton>
                     </View>
+
                   )}
+                  <MainButton
+                    style={{ backgroundColor: "green", marginTop: 20 }}
+                    onPress={() => this.answer("correct", question)}
+                  >
+                    Correct
+                  </MainButton>
+                  <MainButton
+                    style={{ backgroundColor: "red" }}
+                    onPress={() => this.answer("Incorrect", question)}
+                  >
+                    Incorrect
+                  </MainButton>
                 </View>
               );
             }
