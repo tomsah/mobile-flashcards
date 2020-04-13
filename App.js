@@ -1,6 +1,9 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { View, Button } from 'react-native'
+import React, { Component } from 'react';
+import { View, Button, Platform } from 'react-native'
+
+import { setLocalNotification } from './utils/notifications'
+
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -48,27 +51,32 @@ function HomeTabScreen () {
   )
 }
 
- function App() {
-  return (
-    <View style={{flex: 1}}>
-      <NavigationContainer>
-        <Stack.Navigator
+ class App extends Component {
 
-        >
-          <Stack.Screen
-            name="Home"
-            component={HomeTabScreen}
-          />
-          <Stack.Screen
-            name="Deck"
-            component={Deck}
-          />
-          <Stack.Screen name="Quiz" component={Quiz} />
-          <Stack.Screen name="NewQuestion" component={NewQuestion} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
-  );
+  componentDidMount () {
+    setLocalNotification()
+  }
+
+   render () {
+    return (
+      <View style={{flex: 1}}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={HomeTabScreen}
+            />
+            <Stack.Screen
+              name="Deck"
+              component={Deck}
+            />
+            <Stack.Screen name="Quiz" component={Quiz} />
+            <Stack.Screen name="NewQuestion" component={NewQuestion} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    );
+  }
 }
 
 export default App
