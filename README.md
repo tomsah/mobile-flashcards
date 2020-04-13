@@ -1,11 +1,11 @@
 # Flash Card
 
-an app that allows users to study collections of flashcard
+an app that allows users create some flashcard study collections  
 The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
 this app was build using
   > [create-react-native-app](https://github.com/react-community/create-react-native-app)  
-  > [Redux](https://github.com/reduxjs/redux)
+  > [react-navigation](https://github.com/react-navigation/react-navigation)  
 
 
 # Installing
@@ -17,9 +17,14 @@ this app was build using
 1. In Terminal, clone the git project using `$ git clone https://github.com/tomsah/mobile-flashcards.git`.
 2. Navigate to the root directory for the project.
 3. Run the command `yarn install` to install the necessary dependencies
-3. Run the command `yarn start` to start the server. This will automatically open expo console in your browser.
-4. you can scan the QR code if you have expo on your mobile device, or you can use the use the simulator button from 
-expo console
+4. Run the command `yarn start` to start the server. This will automatically open expo console in your browser from there you can 
+ 4.1. Scan the QR code with your mobile device, you will need 
+ [expo - apple store](https://apps.apple.com/app/apple-store/id982107779)
+ [expo - google store](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www)
+ 4.2 using the simulator, for that you have to set your environment please follow this documentation
+ [IOS simulator](https://docs.expo.io/versions/v37.0.0/workflow/ios-simulator/)
+ [Android simulator](https://docs.expo.io/versions/v37.0.0/workflow/android-studio-emulator/)
+ 
 
 
 
