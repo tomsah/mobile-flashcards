@@ -25,14 +25,6 @@ class DeckList extends Component {
     });
   }
 
-  clearAsyncStorage = async () => {
-    await AsyncStorage.clear().then(() =>
-      fetchAllDecks().then(decksList => {
-        return this.setState(() => ({ list: decksList }));
-      })
-    );
-  };
-
   onPress = deckId => {
     const { navigation } = this.props;
     return navigation.navigate("Deck", { deckId });
@@ -86,7 +78,6 @@ class DeckList extends Component {
               </View>
             );
           })}
-          <Button title="reset storage" onPress={this.clearAsyncStorage} />
         </ScrollView>
       </View>
     );
