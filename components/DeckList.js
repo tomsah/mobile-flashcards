@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { AsyncStorage } from "react-native";
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
-  Button,
   Platform
 } from "react-native";
 import { fetchAllDecks } from "../utils/api";
