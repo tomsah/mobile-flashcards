@@ -1,34 +1,35 @@
 import React, { Component } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
-import { purple, white } from '../utils/colors'
-import MainButton from './MainButton'
-import { saveDeckTitle } from '../utils/api'
+import { purple, white } from "../utils/colors";
+import MainButton from "./MainButton";
+import { saveDeckTitle } from "../utils/api";
 
 class NewDeck extends Component {
   state = {
-    title : ''
-  }
+    title: ""
+  };
 
-  setText = (text) => this.setState({
-    title: text
-  })
+  setText = text =>
+    this.setState({
+      title: text
+    });
 
   submitNewDeck = () => {
-    const { title } = this.state
-    const { navigation } = this.props
-    saveDeckTitle(title)
-      .then(() => {
-        navigation.jumpTo('Home')
-        return  navigation.navigate('Deck', {deckId: title})
-    })
-  }
+    const { title } = this.state;
+    const { navigation } = this.props;
+    saveDeckTitle(title).then(() => {
+      navigation.jumpTo("Home");
+      return navigation.navigate("Deck", { deckId: title });
+    });
+  };
 
   render() {
-    const { title } = this.state
-    console.log('title', title)
+    const { title } = this.state;
     return (
       <View style={styles.container}>
-        <Text  style={{ fontSize: 18, textAlign: "center", padding: 20 }}>What is the Title of your new Deck ?</Text>
+        <Text style={{ fontSize: 18, textAlign: "center", padding: 20 }}>
+          What is the Title of your new Deck ?
+        </Text>
         <TextInput
           style={styles.input}
           placeholder="enter your deck title here"
@@ -39,15 +40,16 @@ class NewDeck extends Component {
 
         <MainButton
           disabled={[...title].length === 0}
-          onPress={this.submitNewDeck}>
+          onPress={this.submitNewDeck}
+        >
           Submit
         </MainButton>
       </View>
-    )
+    );
   }
 }
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
@@ -62,8 +64,8 @@ const styles =  StyleSheet.create({
     marginBottom: 30,
     padding: 25,
     paddingTop: 5,
-    paddingBottom: 5,
+    paddingBottom: 5
   }
-})
+});
 
-export default NewDeck
+export default NewDeck;

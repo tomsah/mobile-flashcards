@@ -3,7 +3,10 @@ import { View, Text, StyleSheet, Platform, Button } from "react-native";
 import { getDeck } from "../utils/api";
 import { white } from "../utils/colors";
 import MainButton from "./MainButton";
-import { clearLocalNotifcations, setLocalNotification} from '../utils/notifications'
+import {
+  clearLocalNotifcations,
+  setLocalNotification
+} from "../utils/notifications";
 
 class Quiz extends Component {
   state = {
@@ -37,14 +40,10 @@ class Quiz extends Component {
     // when a quiz finishes set a notification for next day
     // at 15H
 
-    if(cardNumber === this.state.currentQuestion + 1) {
-      console.log('end of the quiz')
-      clearLocalNotifcations()
-      .then(setLocalNotification)
+    if (cardNumber === this.state.currentQuestion + 1) {
+      clearLocalNotifcations().then(setLocalNotification);
     }
 
-    console.log(cardNumber,  this.state.currentQuestion)
-    console.log(answer,  questions[questionId])
 
 
     if (answer === questions[questionId]) {
@@ -149,7 +148,6 @@ class Quiz extends Component {
                         onPress={this.showAnswer}
                       />
                     </View>
-
                   )}
                   <MainButton
                     style={{ backgroundColor: "green", marginTop: 20 }}

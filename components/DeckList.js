@@ -20,7 +20,7 @@ class DeckList extends Component {
   componentDidMount() {
     this.props.navigation.addListener("focus", () => {
       fetchAllDecks().then(decksList => {
-        return this.setState(() => ({ list:decksList }));
+        return this.setState(() => ({ list: decksList }));
       });
     });
   }
@@ -41,23 +41,24 @@ class DeckList extends Component {
   createDeck = () => {
     const { navigation } = this.props;
     return navigation.navigate("NewDeck");
-  }
+  };
 
   render() {
     const { list } = this.state;
-    console.log('state', list)
-    if(  Object.keys(list).length === 0 ) {
+    if (Object.keys(list).length === 0) {
       return (
         <View style={styles.container}>
           <Text style={{ fontSize: 20, textAlign: "center" }}>
-            You have not yet created a study deck</Text>
+            You have not yet created a study deck
+          </Text>
           <Text style={{ fontSize: 16, textAlign: "center" }}>
-            Please create a Deck to start</Text>
+            Please create a Deck to start
+          </Text>
           <MainButton onPress={() => this.createDeck()}>
-           Create your first deck
+            Create your first deck
           </MainButton>
         </View>
-      )
+      );
     }
 
     return (
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3
     }
-  },
+  }
 });
 
 export default DeckList;

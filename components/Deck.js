@@ -4,7 +4,6 @@ import MainButton from "./MainButton";
 import { white } from "../../mobile-flashcards/utils/colors";
 import { getDeck } from "../utils/api";
 
-
 class Deck extends Component {
   state = {
     deck: {}
@@ -13,7 +12,7 @@ class Deck extends Component {
   componentDidMount() {
     const { deckId } = this.props.route.params;
     this.props.navigation.addListener("focus", () => {
-       getDeck(deckId).then(deck => {
+      getDeck(deckId).then(deck => {
         return this.setState(() => ({ deck: deck }));
       });
     });
@@ -44,8 +43,11 @@ class Deck extends Component {
             {cardNumber} cards
           </Text>
           <MainButton
-            disabled={ cardNumber === 0}
-            onPress={() => this.startQuiz(title)}>Start</MainButton>
+            disabled={cardNumber === 0}
+            onPress={() => this.startQuiz(title)}
+          >
+            Start
+          </MainButton>
           <MainButton onPress={this.addQuestion}>Add Question</MainButton>
         </View>
       </View>
