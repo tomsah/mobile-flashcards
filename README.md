@@ -25,7 +25,8 @@ this app was build using
  [IOS simulator](https://docs.expo.io/versions/v37.0.0/workflow/ios-simulator/)
  [Android simulator](https://docs.expo.io/versions/v37.0.0/workflow/android-studio-emulator/)
  
-
+# Installing
+the app has been tested on IOS simulator on mac and on a physical android device
 
 
 
