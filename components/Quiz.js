@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Platform,
-  Button,
-} from "react-native";
+import { View, Text, StyleSheet, Platform, Button } from "react-native";
 import { getDeck } from "../utils/api";
 import { white } from "../utils/colors";
 import MainButton from "./MainButton";
@@ -74,9 +68,9 @@ class Quiz extends Component {
     }));
   };
 
-  backToDeck = (deckId) => {
-    const { navigation } = this.props
-    return navigation.navigate('Deck', {deckId})
+  backToDeck = deckId => {
+    const { navigation } = this.props;
+    return navigation.navigate("Deck", { deckId });
   };
 
   render() {
@@ -98,7 +92,9 @@ class Quiz extends Component {
 
           <MainButton onPress={this.restartQuiz}>Restart</MainButton>
 
-          <MainButton onPress={() => this.backToDeck(title)}>Back to deck</MainButton>
+          <MainButton onPress={() => this.backToDeck(title)}>
+            Back to deck
+          </MainButton>
         </View>
       );
     }
@@ -117,11 +113,20 @@ class Quiz extends Component {
                   </Text>
                   {showAnswer ? (
                     <View>
-                      <Text>{questions[question]}</Text>
-                      <Button
-                        title="next question"
+                      <Text
+                        style={{
+                          fontSize: 20,
+                          padding: 20,
+                          textAlign: "center"
+                        }}
+                      >
+                        this answer was {questions[question]}
+                      </Text>
+                      <MainButton
                         onPress={() => this.nextQuestion(currentQuestion)}
-                      />
+                      >
+                        next question
+                      </MainButton>
                     </View>
                   ) : (
                     <View>
@@ -135,14 +140,21 @@ class Quiz extends Component {
                         {question}?
                       </Text>
 
-                      <Button title="Answer" onPress={this.showAnswer} />
+                      <Button
+                        title="View Answer"
+                        type="clear"
+                        color={Platform.OS === "ios" ? "blue" : "orange"}
+                        onPress={this.showAnswer}
+                      />
 
                       <MainButton
+                        style={{ backgroundColor: "green", marginTop: 20 }}
                         onPress={() => this.answer("correct", question)}
                       >
                         Correct
                       </MainButton>
                       <MainButton
+                        style={{ backgroundColor: "red" }}
                         onPress={() => this.answer("Incorrect", question)}
                       >
                         Incorrect
@@ -172,6 +184,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginTop: 17,
+    elevation: 3,
     justifyContent: "center",
     shadowRadius: 3,
     shadowOpacity: 0.8,

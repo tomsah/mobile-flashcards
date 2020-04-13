@@ -52,12 +52,15 @@ const styles =  StyleSheet.create({
     backgroundColor: white
   },
   input: {
-    height: 40,
+    height: 50,
     borderWidth: 2,
     borderRadius: 3,
     borderColor: purple,
     marginTop: 30,
-    marginBottom: 30
+    marginBottom: 30,
+    padding: 25,
+    paddingTop: 5,
+    paddingBottom: 5,
   }
 })
 

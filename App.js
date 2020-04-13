@@ -51,7 +51,6 @@ function HomeTabScreen () {
  function App() {
   return (
     <View style={{flex: 1}}>
-      <View style={{height: 80}}/>
       <NavigationContainer>
         <Stack.Navigator
 

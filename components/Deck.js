@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginTop: 17,
+    elevation: 3,
     justifyContent: "center",
     shadowRadius: 3,
     shadowOpacity: 0.8,

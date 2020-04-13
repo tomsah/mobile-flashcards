@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
-import { purple, white } from '../utils/colors'
+import { gray, white } from '../utils/colors'
 import MainButton from './MainButton'
 import { addCardToDeck } from '../utils/api'
 
@@ -39,17 +39,16 @@ class NewQuestion extends Component {
     const { question, answer } = this.state
     return (
       <View style={styles.container}>
-        <Text  style={{ fontSize: 18, textAlign: "center", padding: 20 }}>What is the Title of your new Deck ?</Text>
-        <Text style={{ fontSize: 14, textAlign: "center", padding: 20 }}>Enter a question</Text>
+        <Text style={{ fontSize: 18, textAlign: "center", padding: 20 }}>Enter your question</Text>
         <TextInput
           style={styles.input}
           placeholder="enter your Question here"
           onChangeText={text => this.setQuestion(text)}
           defaultValue={question}
         />
-        <Text style={{ fontSize: 14, textAlign: "center", padding: 20 }}>Enter an answer</Text>
+        <Text style={{ fontSize: 18, textAlign: "center", padding: 20 }}>Enter your Answer</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {marginBottom: 20}]}
           placeholder="enter your Answer here"
           onChangeText={text => this.setAnswer(text)}
           defaultValue={answer}
@@ -75,9 +74,7 @@ const styles =  StyleSheet.create({
     height: 40,
     borderWidth: 2,
     borderRadius: 3,
-    borderColor: purple,
-    marginTop: 30,
-    marginBottom: 30
+    borderColor: gray,
   }
 })
 

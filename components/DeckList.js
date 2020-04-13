@@ -47,7 +47,7 @@ class DeckList extends Component {
           <Text style={styles.title}>Deck List View</Text>
           {Object.keys(list).map(deck => {
             return (
-              <View style={styles.row} key={deck}>
+              <View key={deck}>
                 <View style={styles.item}>
                   <Text style={{ fontSize: 20, textAlign: "center" }}>
                     {deck}
@@ -76,12 +76,8 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
     backgroundColor: white
-  },
-  row: {
-    flexDirection: "row",
-    flex: 1,
-    alignItems: "center"
   },
   title: {
     fontSize: 24,
@@ -98,21 +94,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     shadowRadius: 3,
     shadowOpacity: 0.8,
+    elevation: 3,
     shadowColor: "rgba(0, 0, 0, 0.24)",
     shadowOffset: {
       width: 0,
       height: 3
     }
   },
-  decks: {
-    marginTop: 20,
-    marginBottom: 20,
-    borderRadius: 3,
-    borderColor: "black",
-    borderWidth: 1,
-    // flexDirection: "row",
-    padding: 20
-  }
 });
 
 export default DeckList;

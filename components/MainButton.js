@@ -1,15 +1,19 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
-import { purple, white } from '../utils/colors'
+import { purple, white, gray } from '../utils/colors'
 
 export default function MainButton ({children, onPress, style = {}, disabled = false}) {
   return(
     <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosGoDeckBtn : styles.AndroidGoDeckBtn }
+      style={
+        [Platform.OS === 'ios' ? styles.iosGoDeckBtn : styles.AndroidGoDeckBtn,
+          disabled ? styles.disabled : styles.enable,
+          style ]
+      }
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={[styles.btnText, style]}>{children}</Text>
+      <Text style={styles.btnText}>{children}</Text>
     </TouchableOpacity>
   )
 }
@@ -23,22 +27,25 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     marginBottom: 20,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     width: 200,
   },
+  disabled: {
+    backgroundColor: 'rgba(191, 191, 191, 0.3)',
+  },
+  enable: {
+    opacity: 1,
+  },
   AndroidGoDeckBtn: {
-    backgroundColor: purple,
+    backgroundColor: gray,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
     marginBottom: 20,
     height: 45,
     borderRadius: 2,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   btnText: {
     color: white,
