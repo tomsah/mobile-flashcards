@@ -1,70 +1,53 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  Platform,
-  StyleSheet,
-  Button,
-} from 'react-native'
+import { View, Text, Platform, StyleSheet } from "react-native";
 import MainButton from "./MainButton";
 import { white } from "../../mobile-flashcards/utils/colors";
-import { getDeck } from '../utils/api'
+import { getDeck } from "../utils/api";
 
 class Deck extends Component {
   state = {
-    deck:{}
-  }
+    deck: {}
+  };
 
   componentDidMount() {
-    getDeck('deckThree')
-    .then( (deck) => {
-      console.log('decksList', deck)
-      return this.setState(() => ({ deck: deck }))
-    })
+    const { deckId } = this.props.route.params;
+    console.log("componentDidMount deck", deckId);
+    this.props.navigation.addListener("focus", () => {
+      return getDeck(deckId).then(deck => {
+        console.log(this.state.loading);
+        return this.setState(() => ({ deck: deck }));
+      });
+    });
   }
 
-  startQuiz = () => {
-    // navigate to the card screen
-    console.log("start quiz");
+  startQuiz = deckID => {
+    const { navigation } = this.props;
+    return navigation.navigate("Quiz", { deckID });
   };
 
   addQuestion = () => {
-    // navigate to the addquestion
-    console.log("add question");
+    const { navigation } = this.props;
+    const { deckId } = this.props.route.params;
+    this.setState(state => ({ ...state, loading: true }));
+    return navigation.navigate("NewQuestion", { deckId: deckId });
   };
 
-  deleteDeck = (id) => {
-    // call removeDeck api
-    // removeDeck(id)
-
-    console.log('remove deck')
-  }
-
   render() {
-    const { deck } = this.state
-    const title = Object.keys(deck)
-    const questions =  deck[title]
-    const cardNumber = (title && questions) && Object.keys(questions).length
+    const { deck } = this.state;
+    const title = Object.keys(deck);
+    const questions = deck[title];
+    const cardNumber = title && questions && Object.keys(questions).length;
 
     return (
       <View style={styles.container}>
         <View style={styles.item}>
-          <Text style={{fontSize: 20, textAlign: 'center'}}>{title}</Text>
-          <Text style={{fontSize: 18, textAlign: 'center', padding: 20}}>
+          <Text style={{ fontSize: 20, textAlign: "center" }}>{title}</Text>
+          <Text style={{ fontSize: 18, textAlign: "center", padding: 20 }}>
             {cardNumber} cards
           </Text>
-          <MainButton  onPress={this.startQuiz}>
-            Start
-          </MainButton>
-          <MainButton  onPress={this.addQuestion}>
-            Add Question
-          </MainButton>
+          <MainButton onPress={() => this.startQuiz(title)}>Start</MainButton>
+          <MainButton onPress={this.addQuestion}>Add Question</MainButton>
         </View>
-
-        <Button
-          title='Delete Deck'
-          onPress={this.deleteDeck} />
-
       </View>
     );
   }
@@ -77,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: white
   },
   item: {
-    textAlign: 'center',
+    textAlign: "center",
     backgroundColor: white,
     borderRadius: Platform.OS === "ios" ? 16 : 2,
     padding: 20,
@@ -92,7 +75,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3
     }
-  },
+  }
 });
 
 export default Deck;

@@ -9,6 +9,10 @@ class NewDeck extends Component {
     title : ''
   }
 
+  componentDidMount () {
+    console.log("NEW DECK")
+  }
+
   setText = (text) => this.setState({
     title: text
   })

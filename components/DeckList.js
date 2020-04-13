@@ -6,12 +6,21 @@ import {
   StyleSheet,
   ScrollView,
   Button,
-  TouchableOpacity,
   Platform
 } from "react-native";
 import { fetchAllDecks } from "../utils/api";
-import { white, purple } from "../../mobile-flashcards/utils/colors";
-import MainButton from './MainButton'
+import { white } from "../../mobile-flashcards/utils/colors";
+import MainButton from "./MainButton";
+import Home from './Home'
+
+import NewDeck from './NewDeck'
+import NewQuestion from './NewQuestion'
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { Ionicons } from '@expo/vector-icons';
+
+
+// const Tab = createBottomTabNavigator();
 
 class DeckList extends Component {
   state = {
@@ -19,8 +28,13 @@ class DeckList extends Component {
   };
 
   componentDidMount() {
-    fetchAllDecks().then(decksList => {
-      return this.setState(() => ({ list: decksList }));
+    // fetchAllDecks().then(decksList => {
+    //   return this.setState(() => ({ list: decksList }));
+    // });
+    this.props.navigation.addListener("focus", () => {
+      fetchAllDecks().then(decksList => {
+        return this.setState(() => ({ list: decksList }));
+      });
     });
   }
 
@@ -32,40 +46,41 @@ class DeckList extends Component {
     );
   };
 
-  onPress = () => {
-    console.log("go to that deck");
+  onPress = deckId => {
+    const { navigation } = this.props;
+    return navigation.navigate("Deck", { deckId });
   };
 
   render() {
     const { list } = this.state;
     return (
-      <ScrollView style={styles.container}>
-        <Text style={styles.title}>Deck List View</Text>
-        {Object.keys(list).map(deck => {
-          console.log("deck", deck);
-          return (
-            <View style={styles.row}>
-              <View style={styles.item} key={deck}>
-                <Text style={{ fontSize: 20, textAlign: "center" }}>
-                  {deck}
-                </Text>
-                <Text
-                  style={{ fontSize: 18, textAlign: "center", padding: 20 }}
-                >
-                  {" "}
-                  {Object.keys(list[deck]).length} Cards{" "}
-                </Text>
+      <View style={styles.container}>
+        <ScrollView>
+          <Text style={styles.title}>Deck List View</Text>
+          {Object.keys(list).map(deck => {
+            return (
+              <View style={styles.row} key={deck}>
+                <View style={styles.item}>
+                  <Text style={{ fontSize: 20, textAlign: "center" }}>
+                    {deck}
+                  </Text>
+                  <Text
+                    style={{ fontSize: 18, textAlign: "center", padding: 20 }}
+                  >
+                    {" "}
+                    {Object.keys(list[deck]).length} Cards{" "}
+                  </Text>
 
-                <MainButton onPress={this.onPress}>
+                  <MainButton onPress={() => this.onPress(deck)}>
                     Go to Deck
-                </MainButton>
+                  </MainButton>
+                </View>
               </View>
-            </View>
-          );
-        })}
-
-        <Button title="reset storage" onPress={this.clearAsyncStorage} />
-      </ScrollView>
+            );
+          })}
+          <Button title="reset storage" onPress={this.clearAsyncStorage} />
+        </ScrollView>
+      </View>
     );
   }
 }

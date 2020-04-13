@@ -20,17 +20,19 @@ class NewQuestion extends Component {
     answer: text
   }))
 
-  submitNewQuestion = () => {
+  submitNewQuestion = async () => {
     const { question, answer } = this.state
-    // from navigation grab the deckId
+    const { navigation, route } = this.props
+    const { deckId } = route.params
+
     const card = {
       question,
       answer,
     }
-    addCardToDeck(title, card)
-    .then(() => {
-      console.log('redirect to the deck view')
-    })
+    await addCardToDeck(deckId, card)
+      .then(() => {
+        return  navigation.navigate('Deck', {deckId})
+      })
   }
 
   render() {

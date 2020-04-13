@@ -73,7 +73,10 @@ class Quiz extends Component {
     }));
   };
 
-  backToDeck = () => console.log("back to deck view, nav needed");
+  backToDeck = (deckId) => {
+    const { navigation } = this.props
+    return navigation.navigate('Deck', {deckId})
+  };
 
   render() {
     const { deck, currentQuestion, quizEnd, score, showAnswer } = this.state;
@@ -94,7 +97,7 @@ class Quiz extends Component {
 
           <MainButton onPress={this.restartQuiz}>Restart</MainButton>
 
-          <MainButton onPress={this.backToDeck}>Back to deck</MainButton>
+          <MainButton onPress={() => this.backToDeck(title)}>Back to deck</MainButton>
         </View>
       );
     }
