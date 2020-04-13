@@ -25,6 +25,7 @@ class NewDeck extends Component {
 
   render() {
     const { title } = this.state
+    console.log('title', title)
     return (
       <View style={styles.container}>
         <Text  style={{ fontSize: 18, textAlign: "center", padding: 20 }}>What is the Title of your new Deck ?</Text>
@@ -33,6 +34,7 @@ class NewDeck extends Component {
           placeholder="enter your deck title here"
           onChangeText={text => this.setText(text)}
           defaultValue={title}
+          value={title}
         />
 
         <MainButton

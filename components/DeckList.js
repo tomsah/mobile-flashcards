@@ -38,9 +38,28 @@ class DeckList extends Component {
     return navigation.navigate("Deck", { deckId });
   };
 
+  createDeck = () => {
+    const { navigation } = this.props;
+    return navigation.navigate("NewDeck");
+  }
+
   render() {
     const { list } = this.state;
     console.log('state', list)
+    if(  Object.keys(list).length === 0 ) {
+      return (
+        <View style={styles.container}>
+          <Text style={{ fontSize: 20, textAlign: "center" }}>
+            You have not yet created a study deck</Text>
+          <Text style={{ fontSize: 16, textAlign: "center" }}>
+            Please create a Deck to start</Text>
+          <MainButton onPress={() => this.createDeck()}>
+           Create your first deck
+          </MainButton>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.container}>
         <ScrollView>
