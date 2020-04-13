@@ -11,7 +11,6 @@ class Deck extends Component {
 
   componentDidMount() {
     const { deckId } = this.props.route.params;
-    console.log("componentDidMount deck", deckId);
     this.props.navigation.addListener("focus", () => {
       return getDeck(deckId).then(deck => {
         console.log(this.state.loading);

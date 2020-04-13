@@ -11,16 +11,6 @@ import {
 import { fetchAllDecks } from "../utils/api";
 import { white } from "../../mobile-flashcards/utils/colors";
 import MainButton from "./MainButton";
-import Home from './Home'
-
-import NewDeck from './NewDeck'
-import NewQuestion from './NewQuestion'
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { Ionicons } from '@expo/vector-icons';
-
-
-// const Tab = createBottomTabNavigator();
 
 class DeckList extends Component {
   state = {
@@ -28,9 +18,6 @@ class DeckList extends Component {
   };
 
   componentDidMount() {
-    // fetchAllDecks().then(decksList => {
-    //   return this.setState(() => ({ list: decksList }));
-    // });
     this.props.navigation.addListener("focus", () => {
       fetchAllDecks().then(decksList => {
         return this.setState(() => ({ list: decksList }));
