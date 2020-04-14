@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Platform, StyleSheet } from "react-native";
 import MainButton from "./MainButton";
-import { white } from "../../mobile-flashcards/utils/colors";
+import { white } from "../utils/colors";
 import { getDeck } from "../utils/api";
 
 class Deck extends Component {

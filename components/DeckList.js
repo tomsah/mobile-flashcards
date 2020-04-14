@@ -7,7 +7,7 @@ import {
   Platform
 } from "react-native";
 import { fetchAllDecks } from "../utils/api";
-import { white } from "../../mobile-flashcards/utils/colors";
+import { white } from "../utils/colors";
 import MainButton from "./MainButton";
 
 class DeckList extends Component {
